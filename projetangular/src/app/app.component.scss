@@ -1,0 +1,58 @@
+.light-blue-navbar {
+    background-color: #397fc0; // bleu très clair
+    color: #ffffff; // texte foncé pour contraste (tu peux mettre #000 ou #333)
+  
+    .mat-button {
+      color: #ffffff; 
+       font-style: normal;
+    }
+  
+    .navbar-brand {
+      font-weight: bold;
+      font-size: 20px;
+    }
+  
+    .spacer {
+      flex: 1 1 auto;
+    }
+  
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  }
+  @import url('https://fonts.googleapis.com/css2?family=Great+Vibes&family=Pacifico&display=swap');
+
+.vintage-title {
+  font-family: 'Pacifico', cursive; // Police rétro
+  font-size: 26px;
+  color: #6a1b1a; // Rouge/brun rétro
+  text-shadow: 2px 2px 1px rgba(0, 0, 0, 0.2);
+  letter-spacing: 1px;
+}
+.footer {
+  display: flex;
+  justify-content: space-between;
+  padding: 0 20px;
+  position: relative;
+  bottom: 0;
+  width: 100%;
+  height: 64px;
+  font-size: 14px;
+  background-color: #397fc0; /* Dark tone */
+  color: #ffffff;
+}
+
+.dark-footer a {
+  color: #ffffff;
+  text-decoration: none;
+}
+
+.dark-footer a:hover {
+  text-decoration: underline;
+}
+
+.spacer {
+  flex: 1 1 auto;
+}
+.navbar {
+  display: flex;
+  align-items: center;
+}

@@ -1,0 +1,88 @@
+.signup-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background: #f3f3f3;
+    padding: 20px;
+  }
+  
+  .signup-card {
+    display: flex;
+    width: 900px;
+    height: 550px;
+    border-radius: 20px;
+    overflow: hidden;
+    padding: 0;
+  }
+  
+  .card-content {
+    display: flex;
+    width: 100%;
+    height: 100%;
+  }
+  
+  .form-section {
+    flex: 1;
+    padding: 40px;
+    background-color: #ffffff;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+  
+  .form-section h2 {
+    margin-bottom: 10px;
+    font-size: 28px;
+    color: #333;
+  }
+  
+  .form-section .subtitle {
+    margin-bottom: 20px;
+    color: #777;
+  }
+  
+  mat-form-field {
+    width: 100%;
+    margin-bottom: 20px;
+  }
+  
+  .image-section {
+    flex: 1;
+    background-image: url('/assets/shop8.jpg');
+    background-size: cover;
+    background-position: center;
+  }
+  
+  button {
+    width: 100%;
+  }
+  
+  @media (max-width: 768px) {
+    .signup-card {
+      flex-direction: column;
+      height: auto;
+    }
+  
+    .image-section {
+      height: 300px;
+    }
+  }
+  
+  .login-link {
+    margin-top: 15px;
+    text-align: center;
+    font-size: 14px;
+  
+    a {
+      color: #3f51b5;
+      text-decoration: none;
+      font-weight: 500;
+      margin: 0 5px;
+    }
+  
+    a:hover {
+      text-decoration: underline;
+    }
+  }
+  

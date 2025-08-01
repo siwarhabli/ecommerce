@@ -1,0 +1,42 @@
+<div class="signup-container">
+  <mat-card class="signup-card">
+    <div class="card-content">
+      <!-- Left: Form -->
+      <div class="form-section">
+        <h2>Login</h2>
+        <p class="subtitle">Welcome back! Please log in to your account.</p>
+        <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+          <mat-form-field appearance="outline">
+            <mat-label>Email</mat-label>
+            <input matInput formControlName="email" required placeholder="Email" />
+            <mat-error *ngIf="loginForm.get('email')?.invalid && loginForm.get('email')?.touched">
+              Please enter a valid email.
+            </mat-error>
+          </mat-form-field>
+
+          <mat-form-field appearance="outline">
+            <mat-label>Password</mat-label>
+            <input matInput [type]="hidePassword ? 'password' : 'text'" formControlName="password" required placeholder="Password" />
+            <button mat-icon-button matSuffix type="button" (click)="togglePasswordVisibility()">
+              <mat-icon>{{ hidePassword ? 'visibility_off' : 'visibility' }}</mat-icon>
+            </button>
+            <mat-error *ngIf="loginForm.get('password')?.invalid && loginForm.get('password')?.touched">
+              Please enter a valid password.
+            </mat-error>
+          </mat-form-field>
+
+          <button mat-raised-button color="primary" type="submit" [disabled]="loginForm.invalid">Login</button>
+
+          <!-- 👇 Forgot password and register link -->
+          <p class="login-link">
+            <a routerLink="/forgot-password">Forgot password?</a> |
+            <a routerLink="/register">Don't have an account? Sign up</a>
+          </p>
+        </form>
+      </div>
+
+      <!-- Right: Image -->
+      <div class="image-section"></div>
+    </div>
+  </mat-card>
+</div>

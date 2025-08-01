@@ -1,0 +1,51 @@
+<div class="signup-container">
+  <mat-card class="signup-card">
+    <div class="card-content">
+      <!-- Left: Form -->
+      <div class="form-section">
+        <h2>Sign Up</h2>
+        <p class="subtitle">Get access to the biggest brands. Become a member today.</p>
+        <form [formGroup]="signupForm" (ngSubmit)="onSubmit()">
+          <mat-form-field appearance="outline">
+            <mat-label>Name</mat-label>
+            <input matInput formControlName="name" required />
+          </mat-form-field>
+
+          <mat-form-field appearance="outline">
+            <mat-label>Email</mat-label>
+            <input matInput formControlName="email" required />
+          </mat-form-field>
+
+          <mat-form-field appearance="outline">
+            <mat-label>Password</mat-label>
+            <input matInput [type]="hidePassword ? 'password' : 'text'" formControlName="password" required />
+            <button mat-icon-button matSuffix (click)="togglePasswordVisibility()" type="button">
+              <mat-icon>{{ hidePassword ? 'visibility_off' : 'visibility' }}</mat-icon>
+            </button>
+          </mat-form-field>
+
+          <mat-form-field appearance="outline">
+            <mat-label>Confirm Password</mat-label>
+            <input matInput [type]="hidePassword ? 'password' : 'text'" formControlName="confirmpassword" required />
+            <button mat-icon-button matSuffix (click)="togglePasswordVisibility()" type="button">
+              <mat-icon>{{ hidePassword ? 'visibility_off' : 'visibility' }}</mat-icon>
+            </button>
+          </mat-form-field>
+
+          <button mat-raised-button color="primary" type="submit" [disabled]="signupForm.invalid">
+            Create Account
+          </button>
+
+          <!-- 👇 Already have an account link -->
+          <p class="login-link">
+            Already have an account?
+            <a routerLink="/login">Log in</a>
+          </p>
+        </form>
+      </div>
+
+      <!-- Right: Image -->
+      <div class="image-section"></div>
+    </div>
+  </mat-card>
+</div>
