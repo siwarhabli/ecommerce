@@ -1,4 +1,4 @@
-package com.codewebprojects.ecom.services.jwt.auth;
+package com.codewebprojects.ecom.services.auth;
 
 import com.codewebprojects.ecom.dto.SignupRequest;
 import com.codewebprojects.ecom.dto.UserDto;

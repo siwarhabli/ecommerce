@@ -28,7 +28,6 @@ public  SimpleCorsFilter(){}
         Map<String,String> map= new HashMap<>();
         String originHeader = request.getHeader("Origin");
 
-        // Autorise les requêtes du front (ou tous si tu veux avec "*")
         response.setHeader("Access-Control-Allow-Origin", originHeader);
         response.setHeader("Access-Control-Allow-Methods", "POST, GET, PUT, OPTIONS, DELETE");
         response.setHeader("Access-Control-Max-Age", "3600");

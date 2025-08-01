@@ -1,4 +1,4 @@
-package com.codewebprojects.ecom.services.jwt;
+package com.codewebprojects.ecom.services;
 
 import com.codewebprojects.ecom.repository.UserRepository;
 import com.codewebprojects.ecom.entity.User;

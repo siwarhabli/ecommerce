@@ -16,7 +16,7 @@ import java.security.Key;
 @Component
 public class JwtUtil {
 
-    public static final String SECRET = "536756685970337336739792F423F4528482B4D62516554685721245642458425745785485987589578957895789578957895789578957895789578957895789"; // Complete the truncated string if known, or assume it's long enough
+    public static final String SECRET = "a2F0Y2hhX2p3dF9zZWNyZXRfMTIzNDU2Nzg5MDEyMzQ1Njc4OTA="; // This is valid base64
 
 
     public String generateToken(String userName) {
@@ -26,14 +26,13 @@ public class JwtUtil {
     }
 
     private String createToken(Map<String, Object> claims, String userName) {
-        // Decode the secret string to a byte array to create a secure key
-        long expirationTimeMillis = System.currentTimeMillis() + 10000L * 60 * 30; // 5000 hours
 
         return Jwts.builder()
                 .setClaims(claims)
                 .setSubject(userName)
+                .claim("admin",true)
                 .setIssuedAt(new Date(System.currentTimeMillis()))
-                .setExpiration(new Date(expirationTimeMillis)) // Using the calculated expiration
+                .setExpiration(new Date(System.currentTimeMillis() + 10000L * 60 * 30)) // Using the calculated expiration
                 .signWith(getSignKey(), SignatureAlgorithm.HS256)
                 .compact();
 

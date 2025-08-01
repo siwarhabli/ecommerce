@@ -1,12 +1,13 @@
-package com.codewebprojects.ecom.services.jwt.admin.category;
+package com.codewebprojects.ecom.services.admin.category;
 
 import com.codewebprojects.ecom.dto.CategoryDto;
 import com.codewebprojects.ecom.entity.Category;
 import com.codewebprojects.ecom.repository.CategoryRepository;
-import lombok.RequiredArgsConstructor;
-import org.springframework.stereotype.Repository;
+import org.springframework.stereotype.Service;
 
-@Repository
+import java.util.List;
+
+@Service
 
 public class CategoryServiceImpl implements CategoryService{
     private  final CategoryRepository categoryRepository;
@@ -21,4 +22,6 @@ public class CategoryServiceImpl implements CategoryService{
 
         return categoryRepository.save(category);
     }
-}
+    public List<Category> getAllCategories(){
+        return  categoryRepository.findAll();
+    }}

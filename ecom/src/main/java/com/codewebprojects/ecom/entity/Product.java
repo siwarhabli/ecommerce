@@ -1,10 +1,13 @@
 package com.codewebprojects.ecom.entity;
 
+import com.codewebprojects.ecom.dto.ProductDto;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.Data;
 import org.hibernate.annotations.OnDelete;
 import org.hibernate.annotations.OnDeleteAction;
+
+import java.util.Base64;
 
 @Entity
 @Data
@@ -12,14 +15,14 @@ import org.hibernate.annotations.OnDeleteAction;
 public class Product {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-private Long id;
+    private Long id;
     private String name;
     private Long price ;
     @Lob
     private String description;
     @Lob
 
-    @Column(columnDefinition = "LONGBLOB")
+    @Column(columnDefinition = "longblob")
     private byte[] img;
 
 
@@ -75,5 +78,25 @@ private Long id;
 
     public void setCategory(Category category) {
         this.category = category;
+    }
+    public ProductDto getDto(){
+        ProductDto productDto=new ProductDto()
+                ;
+        productDto.setId(id);
+        productDto.setName(name);
+
+        productDto.setPrice(price);
+        productDto.setDescription(description);
+        productDto.setByteImg(img);
+        if (img != null) {
+            String base64 = Base64.getEncoder().encodeToString(img);
+            productDto.setBase64Image(base64);
+        } else {
+            productDto.setBase64Image(null);
+        }
+        productDto.setCategoryId(category.getId());
+        productDto.setCategoryName(category.getName());
+        return  productDto;
+
     }
 }

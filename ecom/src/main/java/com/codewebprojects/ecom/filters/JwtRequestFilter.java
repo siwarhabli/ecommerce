@@ -1,17 +1,15 @@
 package com.codewebprojects.ecom.filters;
 
 
-import com.codewebprojects.ecom.services.jwt.UserDetailsServiceImpl;
+import com.codewebprojects.ecom.services.UserDetailsServiceImpl;
 import com.codewebprojects.ecom.utils.JwtUtil;
 import jakarta.servlet.FilterChain;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
-import lombok.RequiredArgsConstructor;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
-import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.web.authentication.WebAuthenticationDetailsSource;
 import org.springframework.stereotype.Component;
 import org.springframework.web.filter.OncePerRequestFilter;
@@ -31,24 +29,16 @@ public class JwtRequestFilter extends OncePerRequestFilter {
     protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain)
             throws ServletException, IOException {
 
-        final String authHeader = request.getHeader("token");
+        final String authHeader = request.getHeader("Authorization");
 
         String username = null;
         String token = null;
 
-        if (authHeader != null && authHeader.startsWith("Bearer ")) {
-            token = authHeader.substring(7); // Extract the JWT token after "Bearer "
-            // It's good practice to wrap this in a try-catch in case of malformed tokens
-            try {
-                username = jwtUtil.extractUsername(token); // Extract username from the JWT
-            } catch (Exception e) {
-                // Log the exception, or handle it as appropriate for your application
-                System.err.println("Error extracting username from token: " + e.getMessage());
-                // You might want to break or return here if token is invalid
-            }
-        }
+       if (authHeader != null && authHeader.startsWith("Bearer ")) {
+           token = authHeader.substring(7); // extraire le token après "Bearer "
+           username = jwtUtil.extractUsername(token);
+       }
 
-// Check if a username was extracted and if there's no existing authentication in the context
         if (username != null && SecurityContextHolder.getContext().getAuthentication() == null) {
 
             // Load user details from your UserDetailsService using the extracted username
@@ -56,9 +46,8 @@ public class JwtRequestFilter extends OncePerRequestFilter {
 
 
             if (jwtUtil.validateToken(token, userDetails)) {
-                // If the token is valid, create an authentication token for Spring Security
                 UsernamePasswordAuthenticationToken authToken = new UsernamePasswordAuthenticationToken(
-                        userDetails, // The authenticated principal (user)
+                        userDetails,
                         null,        // Credentials (password is not needed as token is validated)
                         userDetails.getAuthorities() // User's authorities/roles
                 );

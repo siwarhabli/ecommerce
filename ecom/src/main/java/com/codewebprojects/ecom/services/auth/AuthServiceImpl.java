@@ -1,4 +1,4 @@
-package com.codewebprojects.ecom.services.jwt.auth;
+package com.codewebprojects.ecom.services.auth;
 
 import com.codewebprojects.ecom.dto.SignupRequest;
 import com.codewebprojects.ecom.dto.UserDto;
@@ -33,10 +33,10 @@ return userDto;
     }
 
 @PostConstruct
-    public void createAdminAcount(){
+    public void createAdminAccount(){
 
-        User adminAccouant=userRepository.findByRole(UserRole.ADMIN);
-if(null== adminAccouant)
+        User adminAccount=userRepository.findByRole(UserRole.ADMIN);
+if(null== adminAccount)
 {
     User user= new User();
 user.setEmail("admin@test.com");
